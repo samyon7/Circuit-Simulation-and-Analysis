@@ -72,3 +72,72 @@ The code generates three plots:
 
 
 These plots help visualize the behavior of the circuit and the energy consumption over time.
+
+
+## RLC Circuit Simulation and Analysis Example
+
+**Parameters:**
+* Resistor ($R$): $100 \Omega$
+* Inductor ($L$): $1 \times 10^{-3} \, H$
+* Capacitor ($C$): $1 \times 10^{-6} \, F$
+* Initial Input Energy ($x$): $1 \, J$
+* Initial Decay Factor ($y_{start}$): $5$
+* Frequency ($z_{freq}$): $1 \, Hz$
+* Simulation Time ($t_{end}$): $1 \, s$
+* Time Step ($dt$): $0.001 \, s$
+
+**Target Output Voltage:**
+$$V_{out}(t) = x \cdot e^{-y(t)} \cdot \cos(2 \pi z_{freq} \cdot t) + 0.1 \cdot x \cdot y(t) + \frac{x^2}{1+y(t)} \cdot \sin(z_{freq} \cdot t)$$
+where
+$$y(t) = y_{start}e^{-t}$$
+
+**Component Currents:**
+* **Resistor:** $I_R = \frac{V_{out}}{R}$
+* **Inductor:** $I_L = I_{L,prev} + \frac{V_{out}}{L} \cdot dt$
+* **Capacitor:** $I_C = C \cdot \frac{V_{out} - V_{C,prev}}{dt}$
+
+**Component Energies:**
+* **Capacitor:** $E_C = \frac{1}{2} C V_{out}^2$
+* **Inductor:** $E_L = \frac{1}{2} L I_L^2$
+* **Resistor:** $E_R = V_{out} \cdot I_R \cdot dt$
+
+**Total Energy:**
+$E_{total} = E_C + E_L + E_R$
+
+**Energy Efficiency:**
+$Efficiency = \frac{E_{out}}{E_{in}}$
+
+**Landauer's Limit:**
+$E_{Landauer} = k \cdot T \cdot \ln(2)$, where $k = 1.38 \times 10^{-23} \, J/K$ and $T = 298 \, K$
+
+**Calculations:**
+
+The provided code would compute the values at each time step and plot the results. Here's an example at specific time points for the target voltage:
+*   At $t=0$: $V_{out}(0) = 0.5067 V$
+*   At $t=0.1$: $V_{out}(0.1) = 0.4785V$
+*   At $t=1$: $V_{out}(1) = 0.6375V$
+
+Resistor Current at $t = 0$:
+*   $I_R = 0.005067 A$
+Inductor Current at $t = 0$:
+*   $I_L = 0.5067 A$
+Capacitor Current at $t=0$:
+*   $I_C = 0.0005067 A$
+
+Resistor Energy at $t = 0$:
+*   $E_R = 0.00000000257 J$
+
+Total Energy at $t=0$
+* $E_{total} = 0.000000259 J$
+
+**Example Efficiency**
+
+Assuming $E_{out} = 0.5 \, J$
+$Efficiency = 50\%$
+
+**Landauer's Limit:**
+$E_{Landauer} = 2.84 \times 10^{-21} \, J$
+
+**Analysis:**
+
+The simulation provides insights into the circuit's behavior over time. The current flowing through the different components, and the energy dissipated by each is simulated and the total efficiency of the circuit is computed. Finally the Landauer limit is computed to determine the efficiency of the circuit from an information perspective.
