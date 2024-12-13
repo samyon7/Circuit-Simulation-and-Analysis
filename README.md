@@ -141,3 +141,7 @@ $E_{Landauer} = 2.84 \times 10^{-21} \, J$
 **Analysis:**
 
 The simulation provides insights into the circuit's behavior over time. The current flowing through the different components, and the energy dissipated by each is simulated and the total efficiency of the circuit is computed. Finally the Landauer limit is computed to determine the efficiency of the circuit from an information perspective.
+
+
+
+Just correct me if I'm wrong :')
